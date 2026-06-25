@@ -138,3 +138,35 @@ button:active {
 html {
     scroll-behavior: smooth;
 }
+
+/* Unordered lists (bullets) */
+ul {
+  list-style-type: disc;       /* classic filled circle bullets */
+  margin: 1rem 0;
+  padding-left: 2rem;          /* indent so bullets are visible */
+}
+
+ul li {
+  margin-bottom: 0.5rem;       /* spacing between items */
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Ordered lists (numbers) */
+ol {
+  list-style-type: decimal;    /* numbers 1, 2, 3 */
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+ol li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Optional: make bullets more visible with custom symbol */
+ul li::marker {
+  color: #004578;              /* accent color for bullets */
+  font-weight: bold;
+}

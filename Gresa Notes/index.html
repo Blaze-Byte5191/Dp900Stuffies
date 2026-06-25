@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Azure Data Textbook</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Azure Data Concepts & Workloads</h1>
+      <nav>
+        <ul>
+          <li><a href="#core-data">Core Data Concepts</a></li>
+          <li><a href="#relational">Relational Data</a></li>
+          <li><a href="#non-relational">Non-Relational Data</a></li>
+          <li><a href="#analytics">Analytics Workloads</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Core Data Concepts -->
+      <section id="core-data">
+        <h2>1. Core Data Concepts</h2>
+
+        <h3>1.1 Types of Data</h3>
+        <ul>
+          <li>
+            <strong>Structured:</strong> Fixed schema, rows & columns, easy SQL
+            queries.
+          </li>
+          <li>
+            <strong>Semi-Structured:</strong> Flexible schema (JSON, XML, Avro,
+            Parquet, ORC).
+          </li>
+          <li>
+            <strong>Unstructured:</strong> No schema (images, video, PDFs,
+            social posts).
+          </li>
+        </ul>
+
+        <h3>1.2 Common Data File Formats</h3>
+        <table>
+          <tr>
+            <th>Format</th>
+            <th>Type</th>
+            <th>Key Facts</th>
+          </tr>
+          <tr>
+            <td>CSV</td>
+            <td>Structured</td>
+            <td>Plain text, comma separated, universal but no data types</td>
+          </tr>
+          <tr>
+            <td>JSON</td>
+            <td>Semi-Structured</td>
+            <td>Human-readable, key-value pairs, nested objects allowed</td>
+          </tr>
+          <tr>
+            <td>XML</td>
+            <td>Semi-Structured</td>
+            <td>Tag-based, verbose, widely used in older systems</td>
+          </tr>
+          <tr>
+            <td>Avro</td>
+            <td>Semi-Structured</td>
+            <td>Row-based binary, schema in header, great for streaming</td>
+          </tr>
+          <tr>
+            <td>Parquet</td>
+            <td>Structured</td>
+            <td>Column-based binary, excellent for analytics queries</td>
+          </tr>
+          <tr>
+            <td>ORC</td>
+            <td>Structured</td>
+            <td>Column-based, optimized for Hive/big data workloads</td>
+          </tr>
+        </table>
+
+        <h3>1.3 Types of Databases</h3>
+        <ul>
+          <li>
+            <strong>Relational:</strong> Tables, SQL, ACID compliance,
+            transactional workloads.
+          </li>
+          <li>
+            <strong>Non-Relational:</strong> Key-Value, Document, Column-family,
+            Graph.
+          </li>
+        </ul>
+
+        <h3>1.4 Data Workloads</h3>
+        <table>
+          <tr>
+            <th>Characteristic</th>
+            <th>OLTP</th>
+            <th>OLAP</th>
+          </tr>
+          <tr>
+            <td>Operations</td>
+            <td>Insert/update/delete</td>
+            <td>Complex reads</td>
+          </tr>
+          <tr>
+            <td>Data per query</td>
+            <td>Small</td>
+            <td>Large</td>
+          </tr>
+          <tr>
+            <td>Schema</td>
+            <td>Normalized</td>
+            <td>Denormalized</td>
+          </tr>
+          <tr>
+            <td>Response Time</td>
+            <td>Milliseconds</td>
+            <td>Seconds to minutes</td>
+          </tr>
+          <tr>
+            <td>Users</td>
+            <td>Many concurrent</td>
+            <td>Fewer, analysts</td>
+          </tr>
+        </table>
+
+        <h3>1.5 Data Roles</h3>
+        <ul>
+          <li>
+            <strong>Database Administrator:</strong> Manages, secures, tunes
+            databases.
+          </li>
+          <li>
+            <strong>Data Engineer:</strong> Builds pipelines, moves/transforms
+            data.
+          </li>
+          <li>
+            <strong>Data Analyst:</strong> Queries, reports, dashboards,
+            insights.
+          </li>
+        </ul>
+      </section>
+
+      <!-- Relational Data -->
+      <section id="relational">
+        <h2>2. Relational Data in Azure</h2>
+
+        <h3>2.1 Relational Concepts</h3>
+        <ul>
+          <li>Table, Row, Column</li>
+          <li>Primary Key, Foreign Key</li>
+          <li>Index, View, Stored Procedure</li>
+          <li>
+            <strong>Normalization:</strong> Reduce duplication, improve
+            integrity (tradeoff: more joins).
+          </li>
+        </ul>
+
+        <h3>2.2 SQL Basics</h3>
+        <pre>
+-- DML
+SELECT CustomerName, Email FROM Customers WHERE Country = 'UK';
+INSERT INTO Orders (CustomerID, Amount) VALUES (1, 299.99);
+UPDATE Orders SET Amount = 350 WHERE OrderID = 42;
+DELETE FROM Orders WHERE OrderID = 42;
+
+-- DDL
+CREATE TABLE Products (ProductID INT PRIMARY KEY, ProductName VARCHAR(100));
+ALTER TABLE Products ADD Price DECIMAL(10,2);
+DROP TABLE Products;
+      </pre
+        >
+
+        <h3>2.3 Azure Relational Data Services</h3>
+        <table>
+          <tr>
+            <th>Service</th>
+            <th>Management</th>
+            <th>Compatibility</th>
+            <th>Best For</th>
+          </tr>
+          <tr>
+            <td>Azure SQL Database</td>
+            <td>Microsoft manages everything</td>
+            <td>High (most features)</td>
+            <td>New cloud apps</td>
+          </tr>
+          <tr>
+            <td>Azure SQL Managed Instance</td>
+            <td>Microsoft manages engine</td>
+            <td>Near 100%</td>
+            <td>Lift-and-shift migrations</td>
+          </tr>
+          <tr>
+            <td>SQL Server on Azure VM</td>
+            <td>You manage OS + SQL</td>
+            <td>100%</td>
+            <td>Full control needed</td>
+          </tr>
+        </table>
+
+        <h4>Open Source Databases</h4>
+        <ul>
+          <li>Azure Database for MySQL</li>
+          <li>Azure Database for PostgreSQL</li>
+          <li>Azure Database for MariaDB</li>
+        </ul>
+      </section>
+
+      <!-- Non-Relational Data -->
+      <section id="non-relational">
+        <h2>3. Non-Relational Data on Azure</h2>
+
+        <h3>3.1 Azure Storage</h3>
+        <ul>
+          <li>
+            <strong>Blob Storage:</strong> Block blobs (files), Append blobs
+            (logs), Page blobs (VHDs). Tiers: Hot, Cool, Archive.
+          </li>
+          <li>
+            <strong>File Storage:</strong> SMB file shares, lift-and-shift apps.
+          </li>
+          <li>
+            <strong>Table Storage:</strong> Key-value NoSQL, PartitionKey +
+            RowKey, scalable and low cost.
+          </li>
+        </ul>
+
+        <h3>3.2 Azure Cosmos DB</h3>
+        <ul>
+          <li>Globally distributed, multi-model NoSQL.</li>
+          <li>Consistency levels: Strong → Eventual.</li>
+          <li>Multi-master writes, low latency, elastic scalability.</li>
+        </ul>
+
+        <h4>Cosmos DB APIs</h4>
+        <table>
+          <tr>
+            <th>API</th>
+            <th>Data Model</th>
+            <th>Use Case</th>
+          </tr>
+          <tr>
+            <td>NoSQL (Core)</td>
+            <td>Document (JSON)</td>
+            <td>Best performance with Cosmos</td>
+          </tr>
+          <tr>
+            <td>MongoDB</td>
+            <td>Document (BSON)</td>
+            <td>Migrate Mongo apps without code changes</td>
+          </tr>
+          <tr>
+            <td>Cassandra</td>
+            <td>Column-family</td>
+            <td>Migrate Cassandra apps</td>
+          </tr>
+          <tr>
+            <td>Gremlin</td>
+            <td>Graph</td>
+            <td>Social networks, fraud detection</td>
+          </tr>
+          <tr>
+            <td>Table</td>
+            <td>Key-Value</td>
+            <td>Migrate Azure Table Storage apps</td>
+          </tr>
+          <tr>
+            <td>PostgreSQL</td>
+            <td>Relational/distributed</td>
+            <td>Distributed PostgreSQL (Hyperscale)</td>
+          </tr>
+        </table>
+      </section>
+
+      <!-- Analytics Workloads -->
+      <section id="analytics">
+        <h2>4. Analytics Workloads on Azure</h2>
+
+        <h3>4.1 Large-Scale Analytics Concepts</h3>
+        <ol>
+          <li>Ingest</li>
+          <li>Store</li>
+          <li>Process/Transform</li>
+          <li>Serve</li>
+          <li>Visualize</li>
+        </ol>
+
+        <h4>ETL vs ELT</h4>
+        <ul>
+          <li><strong>ETL:</strong> Transform before loading.</li>
+          <li><strong>ELT:</strong></li>
+
+          <li>
+            <strong>ELT:</strong> Load raw data first, transform inside
+            destination (modern big data pattern).
+          </li>
+        </ul>
+
+        <h4>Batch vs Streaming</h4>
+        <table>
+          <tr>
+            <th></th>
+            <th>Batch Processing</th>
+            <th>Stream Processing</th>
+          </tr>
+          <tr>
+            <td>Data Arrives</td>
+            <td>Large chunks, scheduled intervals</td>
+            <td>Continuously, event by event</td>
+          </tr>
+          <tr>
+            <td>Latency</td>
+            <td>High (minutes to hours)</td>
+            <td>Low (seconds or less)</td>
+          </tr>
+          <tr>
+            <td>Example</td>
+            <td>Nightly sales report</td>
+            <td>Real-time fraud detection</td>
+          </tr>
+          <tr>
+            <td>Azure Services</td>
+            <td>Data Factory, Synapse</td>
+            <td>Stream Analytics, Event Hubs</td>
+          </tr>
+        </table>
+
+        <h3>4.2 Azure Data Services for Analytics</h3>
+        <ul>
+          <li>
+            <strong>Azure Data Factory:</strong> Cloud ETL/ELT, 90+ connectors,
+            orchestrator.
+          </li>
+          <li>
+            <strong>Azure Data Lake Storage Gen2:</strong> Raw data landing
+            zone, hierarchical namespace, ACL security.
+          </li>
+          <li>
+            <strong>Azure Synapse Analytics:</strong> SQL pools, Spark,
+            pipelines, Cosmos DB link — central analytics hub.
+          </li>
+          <li>
+            <strong>Azure Databricks:</strong> Apache Spark notebooks, advanced
+            ML & engineering.
+          </li>
+          <li>
+            <strong>Microsoft Fabric:</strong> Unified SaaS analytics (OneLake,
+            Power BI, Synapse merged).
+          </li>
+          <li>
+            <strong>Azure HDInsight:</strong> Managed Hadoop/Spark/Hive/Kafka —
+            best for open-source teams.
+          </li>
+        </ul>
+
+        <h3>4.3 Real-Time Analytics</h3>
+        <ul>
+          <li>
+            <strong>Azure Event Hubs:</strong> Real-time ingestion, millions of
+            events/sec, Kafka-compatible.
+          </li>
+          <li>
+            <strong>Azure Stream Analytics:</strong> SQL-like queries for
+            streams, reads from Event Hubs/IoT Hub, outputs to SQL, Cosmos,
+            Power BI, Blob.
+          </li>
+          <li>
+            <strong>Azure IoT Hub:</strong> Two-way device-cloud communication,
+            device management.
+          </li>
+        </ul>
+
+        <h3>4.4 Power BI</h3>
+        <p>Microsoft’s business intelligence and visualization tool.</p>
+        <ul>
+          <li>
+            <strong>Power BI Desktop:</strong> Free Windows app for building
+            reports.
+          </li>
+          <li>
+            <strong>Power BI Service:</strong> Cloud platform for
+            publishing/sharing.
+          </li>
+          <li>
+            <strong>Power BI Mobile:</strong> iOS/Android apps for viewing
+            reports.
+          </li>
+        </ul>
+
+        <h4>Workflow</h4>
+        <ol>
+          <li>Connect to data sources</li>
+          <li>Transform/clean with Power Query</li>
+          <li>Create data model (relationships)</li>
+          <li>Write DAX for measures/columns</li>
+          <li>Build visualizations</li>
+          <li>Publish to Service</li>
+          <li>Share dashboards/apps</li>
+        </ol>
+
+        <h4>Data Model Concepts</h4>
+        <ul>
+          <li><strong>Star Schema:</strong> Fact table + dimension tables.</li>
+          <li>
+            <strong>Fact Table:</strong> Quantitative data (sales, quantities).
+          </li>
+          <li>
+            <strong>Dimension Table:</strong> Descriptive attributes (customer,
+            product, date).
+          </li>
+          <li><strong>Measures:</strong> Aggregations via DAX.</li>
+          <li>
+            <strong>Calculated Columns:</strong> Row-by-row computed values.
+          </li>
+        </ul>
+
+        <h4>Visualization Types</h4>
+        <table>
+          <tr>
+            <th>Visualization</th>
+            <th>Best For</th>
+          </tr>
+          <tr>
+            <td>Bar/Column Chart</td>
+            <td>Comparing categories</td>
+          </tr>
+          <tr>
+            <td>Line Chart</td>
+            <td>Trends over time</td>
+          </tr>
+          <tr>
+            <td>Pie/Donut Chart</td>
+            <td>Part-to-whole (sparingly, ~5 slices)</td>
+          </tr>
+          <tr>
+            <td>Scatter Chart</td>
+            <td>Correlation between two measures</td>
+          </tr>
+          <tr>
+            <td>Map</td>
+            <td>Geographic data</td>
+          </tr>
+          <tr>
+            <td>Card/KPI</td>
+            <td>Single summary numbers</td>
+          </tr>
+          <tr>
+            <td>Table/Matrix</td>
+            <td>Detailed tabular data</td>
+          </tr>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <p>Azure Data Textbook © 2026</p>
+    </footer>
+  </body>
+</html>

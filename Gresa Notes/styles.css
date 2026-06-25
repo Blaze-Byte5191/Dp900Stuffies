@@ -1,0 +1,117 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background: #004578;
+  color: #fff;
+  padding: 1rem;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  padding: 2rem;
+}
+
+section {
+  margin-bottom: 2rem;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #004578;
+}
+
+pre {
+  background: #eee;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #004578;
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+table th {
+  background-color: #004578;
+  color: #fff;
+}
+
+table tr:nth-child(even) {
+  background-color: #f4f4f4;
+}
+
+/* Unordered lists (bullets) */
+ul {
+  list-style-type: disc;       /* classic filled circle bullets */
+  margin: 1rem 0;
+  padding-left: 2rem;          /* indent so bullets are visible */
+}
+
+ul li {
+  margin-bottom: 0.5rem;       /* spacing between items */
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Ordered lists (numbers) */
+ol {
+  list-style-type: decimal;    /* numbers 1, 2, 3 */
+  margin: 1rem 0;
+  padding-left: 2rem;
+}
+
+ol li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Optional: make bullets more visible with custom symbol */
+ul li::marker {
+  color: #004578;              /* accent color for bullets */
+  font-weight: bold;
+}
